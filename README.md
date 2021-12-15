@@ -298,6 +298,7 @@ The Playbook and the inventory details for all sensors can be added to respectiv
 These two files should be added on the same folder on the ansible environment.
 Another folder should be added on the same location which is  roles/cybervision_sensor folder, this one contain the role details.
 
+it's on the zipped file : [roles.zip](roles.zip)
 
 After adding these different files and folder to the same folder, you can access to this folder then apply this command to launch the bulk deployment:
 
