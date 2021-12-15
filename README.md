@@ -48,7 +48,7 @@ The YAML file can be found on the document annex
 
 2.1	Catalyst 9X00 series
 
- 
+ ![](CAT9K.jpg)
 
 2.1.1	Playbook
 
@@ -109,7 +109,8 @@ catalyst9k:
 
 2.2	IC3000
 
- 
+![](IC3K.jpg)
+
 2.2.1	Playbook
 <!---Sensor Type--->
 - hosts: ic3k
@@ -163,6 +164,7 @@ ic3k:
 
 2.3	IE3X00
  
+ ![](IE3400.jpg)
 
 2.3.1	Playbook
 
@@ -212,6 +214,8 @@ ie3X00:
 
 2.4	IR1101
  
+![](IR1101.jpg)
+
 2.4.1	Playbook
 
 <!---Sensor Type--->
