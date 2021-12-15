@@ -22,7 +22,8 @@ More details about Ansible environment can fund on www.ansible.com
 1.2	Supported Devices
 
 •	Catalyst9X00 series. 
-•	IR1101. 
+•	IR1101.
+•	IR8340.
 •	IC3K. Active Discovery is available and configurable, see below. 
 •	IE3X00. Active Discovery is available and configurable, see below.
 
@@ -246,6 +247,47 @@ ie3X00:
 <!---Local Manager port access--->
           iox_port: 443
           name: "sparrow_2"
+	  
+2.5	IR8340
+
+2.5.1	Playbook
+
+<!---Sensor Type--->
+- hosts: ir8340
+  gather_facts: false
+  vars:
+<!---Center details--->
+    center_token: ics-4e2ae0442e681a6319e008b529c42b12d293f7b8-24b67528386b72e34b86aaed2f162dd1c58955f4
+    center_url: https://10.2.3.165
+  vars_prompt:
+<!---Two next line stand for the path of the needed sensor application--->
+    - name: application_tar_path
+      prompt: CyberVision app path (aarch64 version)?
+      private: false
+  roles:
+<!---Role of the application--->
+    - cybervision_sensor
+
+2.5.2	Inventory
+
+<!---Sensor Type--->
+   ir8340:
+      hosts:
+<!---Local manager IP address--->
+        192.168.69.70:
+<!---Collection IP address configured in ETH0 on the scheme--->
+          collection_address: 169.254.0.2
+<!---Prefix configured in ETH0 on the scheme--->
+          collection_prefix: 30
+<!---Local Manager Username--->
+          iox_login: admin
+<!---Local Manager Password--->
+          iox_password: Cisco123
+<!---Local Manager port access--->
+          iox_port: 443
+          name: "sumatra"
+
+
 3	Launch the bulk deployment process
 
 The Playbook and the inventory details for all sensors can be added to respectively two different files, the first one can be called bulk-deployment.yml and the second inventory.yml
