@@ -1,0 +1,11 @@
+- hosts: ir1101
+  gather_facts: false
+  vars:
+    center_token: ics-4e2ae0442e681a6319e008b529c42b12d293f7b8-24b67528386b72e34b86aaed2f162dd1c58955f4
+    center_url: https://10.2.3.165
+  vars_prompt:
+    - name: application_tar_path
+      prompt: CyberVision app path (aarch64 version)?
+      private: false
+  roles:
+    - cybervision_sensor

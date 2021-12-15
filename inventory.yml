@@ -1,0 +1,54 @@
+---
+all:
+  children:
+    catalyst9k:
+      hosts:
+        192.168.69.161:
+          collection_address: 192.168.69.61
+          collection_prefix: 24
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 443
+          name: "cat9300_2"
+
+    ic3k:
+      hosts:
+        192.168.69.140:
+          mgmt_netmask: 255.255.255.0
+          mgmt_gateway: 192.168.69.1
+          collection_address: 192.168.69.40
+          collection_prefix: 24
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 8443
+          name: "ic3k_1"
+
+    ir1101:
+      hosts:
+        192.168.69.31:
+          collection_address: 169.254.0.2
+          collection_prefix: 30
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 443
+          name: "sparrow_2"
+
+    ie3X00:
+      hosts:
+        192.168.69.120:
+          collection_address: 192.168.69.20
+          collection_prefix: 24
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 443
+          active_discovery: true
+          name: "petra_2"
+
+    ir8340:
+      hosts:
+        192.168.69.70:
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 443
+          active_discovery: false
+          name: "sumatra"

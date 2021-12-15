@@ -1,0 +1,11 @@
+- hosts: catalyst9k
+  gather_facts: false
+  vars:
+    center_token: ics-1c09745866eccd5515b005537bf9699b1af24c96-2104c3789ca9a628508506fa029945cbc7d424e5
+    center_url: https://10.2.3.165
+  vars_prompt:
+    - name: application_tar_path
+      prompt: CyberVision app path (x86-64 version)?
+      private: false
+  roles:
+    - cybervision_sensor
