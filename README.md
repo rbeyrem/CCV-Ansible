@@ -254,6 +254,8 @@ ie3X00:
 	  
 2.5	IR8340
 
+![](IR8340.jpg)
+
 2.5.1	Playbook
 
 <!---Sensor Type--->
@@ -291,8 +293,87 @@ ie3X00:
           iox_port: 443
           name: "sumatra"
 
+2.6	IE9300
 
-3	Launch the bulk deployment process
+![](CAT9K.jpg)
+
+2.6.1 Playbook
+
+<!---Sensor Type--->
+- hosts: ie9300
+  gather_facts: false
+  vars:
+<!---Center details--->
+    center_token: ics-1c09745866eccd5515b005537bf9699b1af24c96-2104c3789ca9a628508506fa029945cbc7d424e5
+    center_url: https://10.2.3.165
+  vars_prompt:
+<!---Two next line stand for the path of the needed sensor application--->
+    - name: application_tar_path
+      prompt: CyberVision app path (aarch64 version)?
+      private: false
+  roles :
+<!---Role of the application--->
+    - cybervision_sensor
+
+2.6.2	Inventory
+
+<!---Sensor Type--->
+ie9300:
+      hosts:
+<!---Local manager IP address--->
+192.168.69.191:
+<!---Collection IP address configured in ETH0 on the scheme--->
+          collection_address: 192.168.69.91
+<!---Prefix configured in ETH0 on the scheme--->
+          collection_prefix: 24
+<!---Local Manager Username--->
+          iox_login: admin
+<!---Local Manager Password--->
+          iox_password: Cisco123
+<!---Local Manager port access--->
+          iox_port: 443
+          name: "clarke_2"
+<!---Capture parameters--->
+          capture_mode: custom
+          capture_filter: not arp
+<!---This section can be deleted if we are not using Active Discovery--->
+          active_discovery: true
+<!---This interface can be one of the Vlan interfaces of the switch--->
+          active_discovery_interfaces:
+            - ip: "1.2.3.4"
+              netmask: 24
+              vlan: 14
+              iface: "eth2"
+
+
+3 Optional variables
+
+- These variables can be set in the playbook or in the inventory file.
+
+| Variable name                   | Comment                                                                                                                                                            |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| check_sensor_status             | Boolean. If set to true, we wait 3 min after each deployment or update, then we check connectivity status of the sensor to see if it's online. Default to ``false` |
+| check_sensor_and_center_version | Boolean. If set to true, we check that center and sensor are in same version. Default to true |
+
+- Optional common variables per host
+
+| Variable name      | Comment |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| collection_gateway | Gateway of collection interface. For IR1101, default value is 169.254.0.1.|
+| capture_mode | Can be all, industrial_only, optimal or custom. Default: optimal. If custom, use capture_filter (see below) to configure the bpf filter. Used only in deployment (not for update). |
+| capture_filter | Used only in deployment. Bpf filter used to capture trafic. Used only in deployment.|
+
+- Optional variables per host for Cat9K, IE3X00, IE93XX and IR1101
+
+| Variable name   | Comment                                   |
+| --------------- | ----------------------------------------- |
+| collection_vlan | Default value: 507. Not used for IR1101.  |
+| capture_address | Default value: 169.254.1.2.               |
+| capture_prefix  | Default value: 30                         |
+| capture_vlan    | Default value: 2508. Not used for IR1101. |
+| rspan | Default value: false. Used only for C9XXX |
+
+4	Launch the bulk deployment process
 
 The Playbook and the inventory details for all sensors can be added to respectively two different files, the first one can be called bulk-deployment.yml and the second inventory.yml
 These two files should be added on the same folder on the ansible environment.

@@ -55,3 +55,37 @@ all:
               netmask: 24
               vlan: 14
               iface: "eth2"
+
+   ir8340:
+      hosts:
+        192.168.69.70:
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 443
+          name: "sumatra"
+          capture_mode: custom
+          capture_filter: not arp
+          active_discovery: true
+          active_discovery_interfaces:
+            - ip: "1.2.3.4"
+              netmask: 24
+              vlan: 14
+              iface: "eth2"
+
+    ie9300:
+      hosts:
+        192.168.69.11:
+          name: "cat9300_2"
+          collection_address: 192.168.69.12
+          collection_prefix: 24
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 443
+          capture_mode: custom
+          capture_filter: not arp
+          active_discovery: true
+          active_discovery_interfaces:
+            - ip: "1.2.3.4"
+              netmask: 24
+              vlan: 14
+              iface: "eth2"

@@ -52,3 +52,13 @@ all:
           iox_port: 443
           active_discovery: false
           name: "sumatra"
+          
+    ie9300:
+      hosts:
+        192.168.69.191:
+          collection_address: 192.168.69.91
+          collection_prefix: 24
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 443
+          name: "clarke_2"
