@@ -1,7 +1,10 @@
 # cisco-cyber-vision-sensor-management-ansible
- 
 
-1	Ansible Solution overview
+1	License
+
+This project is licensed under the Cisco Sample Code License 1.1 - see the LICENSE.md file for details
+
+2	Ansible Solution overview
 
 Ansible is an open-source software provisioning, configuration management, and application-deployment tool
 Ansible works by connecting to your nodes and pushing out small programs, called "Ansible modules" to them. These programs are written to be resource models of the desired state of the system. Ansible then executes these modules (over SSH by default) and removes them when finished.
@@ -13,13 +16,13 @@ More details about Ansible environment can fund on www.ansible.com
 
 
  
-1.1	Perquisites 
+2.1	Perquisites 
 
 1.	Configured Ansible environment
 2.	Ansible with access to the Center Management IP (eth0)
 3.	Ansible with access to Sensors Local Managers
 
-1.2	Supported Devices
+2.2	Supported Devices
 
 •	Catalyst9X00 series. 
 •	IR1101.
@@ -27,13 +30,13 @@ More details about Ansible environment can fund on www.ansible.com
 •	IC3K. Active Discovery is available and configurable, see below. 
 •	IE3X00. Active Discovery is available and configurable, see below.
 
-1.3	Limitations
+2.3	Limitations
 
 •	Sensor IC3K upgrade
 Note
 The IC3K update can be done using the combined file on the UI center or sbs-update command on sensor’s CLI
 
-2	Configuration files by device
+3	Configuration files by device
 
 In this section we will check the configuration files for each device, two kind of of files exist: 
 
@@ -46,11 +49,11 @@ IMPORTANT
 The code on next session will be added with description for each relevant line.
 The YAML file can be found on the document annex
 
-2.1	Catalyst 9X00 series
+3.1	Catalyst 9X00 series
 
  ![](CAT9K.jpg)
 
-2.1.1	Playbook
+3.1.1	Playbook
 
 <!---Sensor Type--->
 hosts: catalyst9k
@@ -68,7 +71,7 @@ hosts: catalyst9k
   roles:
     - cybervision_sensor
 
-2.1.2	Inventory
+3.1.2	Inventory
 
 <!---Sensor Type--->
 catalyst9k:
@@ -107,11 +110,11 @@ catalyst9k:
 
 
 
-2.2	IC3000
+3.2	IC3000
 
 ![](IC3K.jpg)
 
-2.2.1	Playbook
+3.2.1	Playbook
 <!---Sensor Type--->
 - hosts: ic3k
   gather_facts: false
@@ -129,7 +132,7 @@ catalyst9k:
 <!---Role of the application--->
     - cybervision_sensor
 
-2.2.2	Inventory
+3.2.2	Inventory
 <!---Sensor Type--->
 ic3k:
       hosts:
@@ -162,11 +165,11 @@ ic3k:
 <!---This interface can be one of the physical interfaces of the Switch--->
               iface: "eth1"
 
-2.3	IE3X00
+3.3	IE3X00
  
  ![](IE3400.jpg)
 
-2.3.1	Playbook
+3.3.1	Playbook
 
 <!---Sensor Type--->
 	- hosts: ie3X00
@@ -184,7 +187,7 @@ ic3k:
 <!---Role of the application--->
     - cybervision_sensor
 
-2.3.2	Inventory
+3.3.2	Inventory
 <!---Sensor Type--->
 ie3X00:
       hosts:
@@ -212,11 +215,11 @@ ie3X00:
               vlan: 14
               iface: "eth2"
 
-2.4	IR1101
+3.4	IR1101
  
 ![](IR1101.jpg)
 
-2.4.1	Playbook
+3.4.1	Playbook
 
 <!---Sensor Type--->
 - hosts: ir1101
@@ -234,7 +237,7 @@ ie3X00:
 <!---Role of the application--->
     - cybervision_sensor
 
-2.4.2	Inventory
+3.4.2	Inventory
 <!---Sensor Type--->
    ir1101:
       hosts:
@@ -252,11 +255,11 @@ ie3X00:
           iox_port: 443
           name: "sparrow_2"
 	  
-2.5	IR8340
+3.5	IR8340
 
 ![](IR8340.jpg)
 
-2.5.1	Playbook
+3.5.1	Playbook
 
 <!---Sensor Type--->
 - hosts: ir8340
@@ -274,7 +277,7 @@ ie3X00:
 <!---Role of the application--->
     - cybervision_sensor
 
-2.5.2	Inventory
+3.5.2	Inventory
 
 <!---Sensor Type--->
    ir8340:
@@ -293,11 +296,11 @@ ie3X00:
           iox_port: 443
           name: "sumatra"
 
-2.6	IE9300
+3.6	IE9300
 
 ![](CAT9K.jpg)
 
-2.6.1 Playbook
+3.6.1 Playbook
 
 <!---Sensor Type--->
 - hosts: ie9300
@@ -315,7 +318,7 @@ ie3X00:
 <!---Role of the application--->
     - cybervision_sensor
 
-2.6.2	Inventory
+3.6.2	Inventory
 
 <!---Sensor Type--->
 ie9300:
@@ -346,7 +349,7 @@ ie9300:
               iface: "eth2"
 
 
-3 Optional variables
+4 Optional variables
 
 - These variables can be set in the playbook or in the inventory file.
 
@@ -373,7 +376,7 @@ ie9300:
 | capture_vlan    | Default value: 2508. Not used for IR1101. |
 | rspan | Default value: false. Used only for C9XXX |
 
-4	Launch the bulk deployment process
+5	Launch the bulk deployment process
 
 The Playbook and the inventory details for all sensors can be added to respectively two different files, the first one can be called bulk-deployment.yml and the second inventory.yml
 These two files should be added on the same folder on the ansible environment.
