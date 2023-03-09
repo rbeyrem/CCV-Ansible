@@ -21,6 +21,9 @@ More details about Ansible environment can fund on www.ansible.com
 1.	Configured Ansible environment
 2.	Ansible with access to the Center Management IP (eth0)
 3.	Ansible with access to Sensors Local Managers
+4.	SDflash formatted in ext4 format
+5.	IOx enabled on the switch
+6.	No IOx application already installed on the switch
 
 2.2	Supported Devices
 
@@ -48,6 +51,8 @@ On next section the inventory files will contain Discovery option for sensors wh
 IMPORTANT 
 The code on next session will be added with description for each relevant line.
 The YAML file can be found on the document annex
+Note
+The inventory file can contain one or more switches for each described model (please see the inventory.yml file as exemple)
 
 3.1	Catalyst 9X00 series
 
@@ -384,13 +389,22 @@ Another folder should be added on the same location which is  roles/cybervision_
 
 it's on the zipped file : [roles.zip](roles.zip)
 
-After adding these different files and folder to the same folder, you can access to this folder then apply this command to launch the bulk deployment:
+If a log file is needed you can activate this with adding that two vars :
 
-ansible-playbook -i inventory.yml bulk-deployment.yml
+1.	export ANSIBLE_LOG_PATH=~/ansible.log
+2.	export ANSIBLE_DEBUG=True
 
-Or with -v option for verbose mode
+After adding these different files and folders to the same folder, you can access to this one then apply this command to launch the bulk deployment:
 
-ansible-playbook -v -i inventory.yml bulk-deployment.yml
+ansible-playbook -i inventory.yml bulk-deployment.yml -f 2
+
+Note
+
+-f fork option will help to execute the script by batch of 2 devices each time, some steps can fail with greater batch number 
+
+we can also use with -v option for verbose mode
+
+ansible-playbook -v -i inventory.yml bulk-deployment.yml -f 2
 
 See Example below for IC3K deployment using Ansible:
 
