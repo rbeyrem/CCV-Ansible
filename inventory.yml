@@ -10,6 +10,14 @@ all:
           iox_password: sentryo69!
           iox_port: 443
           name: "cat9300_2"
+          
+        192.168.69.162:
+          collection_address: 192.168.69.62
+          collection_prefix: 24
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 443
+          name: "cat9300_3"
 
     ic3k:
       hosts:
@@ -22,6 +30,16 @@ all:
           iox_password: sentryo69!
           iox_port: 8443
           name: "ic3k_1"
+          
+        192.168.69.141:
+          mgmt_netmask: 255.255.255.0
+          mgmt_gateway: 192.168.69.1
+          collection_address: 192.168.69.41
+          collection_prefix: 24
+          iox_login: admin
+          iox_password: sentryo69!
+          iox_port: 8443
+          name: "ic3k_2"
 
     ir1101:
       hosts:
